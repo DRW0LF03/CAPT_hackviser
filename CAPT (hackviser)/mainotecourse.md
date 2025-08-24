@@ -284,3 +284,424 @@ The Linux operating system is composed of several layers that manage the compute
 
 >In summary, Linux architecture organizes the interaction between the computer's hardware and user activities from physical components to software applications through a well-defined management and control layer.
 
+
+### Linux Distributions
+Linux is not a single operating system but a family of open-source operating systems built around the Linux kernel. These variants are known as "distributions" or "distros." Each distribution offers a different flavor of Linux tailored for various types of users, devices, and purposes. This section explores the concept of Linux distributions, their importance, and examples of popular distros.
+
+What are Linux Distributions?
+A Linux distribution is a complete operating system built around the Linux kernel. It includes the kernel, a wide array of software applications, libraries, and optionally a graphical user interface (GUI). Distros are developed by various organizations, communities, and even individuals, focusing on different needs such as usability, stability, security, or customization.
+
+Why Are There Different Distributions?
+The diversity of Linux distributions stems from the philosophy of freedom and flexibility. Different users have different needs, ranging from personal computers to servers, from beginners to experts, and from lightweight systems for older hardware to feature-rich environments for modern machines. Distributions meet these varied requirements by offering specialized software packages, user interfaces, and management tools.
+
+Core Components of a Distribution
+While each distribution offers unique features and software, they all share several core components:
+
+**Linux Kernel**: The heart of the operating system, managing hardware resources.
+**System Libraries**: Essential for running applications, providing standard ways to interact with the kernel.
+**Software Applications**: Ranging from system utilities to end-user applications.
+**Package Manager**: A tool for installing, updating, and managing software applications and components.
+**Bootloader**: Software that manages the boot process of the computer after power is turned on.
+**Graphical User Interface (GUI)**: Optional, but most distros offer a GUI for ease of use, such as GNOME, KDE, or XFCE.
+#### Popular Linux Distributions
+
+
+_**Ubuntu**_
+
+Target Audience: Beginner and regular desktop users.
+Features: User-friendly, strong focus on ease of installation and usability. Extensive documentation and community support.
+Use Cases: Desktops, servers, and cloud environments.
+
+_**Fedora**_
+
+Target Audience: Developers and system administrators.
+Features: Cutting-edge technology, close alignment with the Linux community, strong emphasis on free software.
+Use Cases: Development, servers, and workstations.
+
+_**CentOS**_
+
+Target Audience: Servers and enterprise users.
+Features: Stability and long-term support, binary compatibility with RHEL (Red Hat Enterprise Linux).
+Use Cases: Servers, enterprise environments.
+
+_**Debian**_
+
+Target Audience: Advanced users and environments focusing on stability.
+Features: Large package repository, strict free software guidelines, stability.
+Use Cases: Servers, desktops, embedded systems.
+
+_**Arch Linux**_
+
+Target Audience: Experienced users and enthusiasts.
+Features: Rolling release model, user-centric approach focusing on customization and minimalism.
+Use Cases: Desktops, development, personal servers.
+
+_**Kali Linux**_
+
+
+Target Audience: Security professionals and ethical hackers.
+Features: Preloaded with a wide range of tools for penetration testing, security research, computer forensics, and reverse engineering.
+Use Cases: Security research, penetration testing, and ethical hacking.
+
+#### Choosing the Right Distribution
+Choosing the right distribution depends on your specific needs, level of expertise, and preferences. Consider the following factors:
+
+- Purpose: Desktop use, server, development, etc.
+Ease of Use: Is it beginner-friendly or requires Linux expertise?
+- Support and Community: Access to documentation, forums, and community support.
+- Hardware Compatibility: Supports your hardware, especially for older or specialized equipment.
+- Software Availability: Availability of the software packages you need.
+In conclusion, Linux distributions offer a wide range of choices for users of all levels and purposes. By understanding the unique features and target audiences of each distro, you can select the one that best meets your needs.
+
+Linux operating systems offer various shells, each with unique features and command syntax:
+
+**BASH (Bourne Again SHell)**: The most widely used Linux shell, serving as the default shell on Linux and macOS. BASH is known for its comprehensive scripting capabilities and extensive support.
+
+**CSH (C Shell)**: The syntax and usage of C Shell are similar to the C programming language, making it appealing for users familiar with C.
+
+**KSH (Korn Shell)**: The Korn Shell, which forms the basis for the POSIX Shell standard features, combines elements from BASH and CSH, offering powerful scripting abilities and command-line editing features.
+
+**ZSH (Z Shell)**: ZSH incorporates features from BASH, KSH, and TCSH, offering robust auto-completion functions, customizable prompts, and numerous plugins and themes through frameworks like Oh My Zsh.
+
+**Fish (Friendly Interactive SHell)**: Known for its user-friendly interface, Fish provides features like syntax highlighting, auto-suggestions, and tab completions without requiring additional configuration.
+
+While all these shells perform the basic task of command interpretation, they vary in the specific commands they support, built-in functionalities, and scripting capabilities, allowing users to choose the shell that best fits their preferences and needs.
+
+### What is a Terminal?
+The terminal application serves as a gateway for users to interact with the shell, providing a text-based interface where commands can be entered and their outputs viewed. It is a critical tool for executing commands directly and is also used to run larger scripts designed to automate and perform repetitive and complex tasks.
+
+To open the terminal, you can usually find it by typing 'terminal' into the search box in the graphical interface and launching it by double-clicking the result.
+
+
+## Linux File System Structure
+
+The Linux file system is hierarchically organized, starting with the root directory /. Understanding this structure is key to effectively navigating in Linux.
+
+---
+
+![file structure](img/tree.jpg)
+
+---
+
+### File and Directory Operations
+In Linux's powerful command-line interface, there are numerous commands to work with files and directories. In this section, you will learn how to create, copy, move, delete, and search for files and directories. Additionally, we will look at some basic commands used to change file and directory permissions.
+
+#### Creating Files and Directories
+
+In Linux, the touch command is used to create files. This command can also be used to update the access and modification times of existing files, but if the file specified does not exist, it will create a new empty file.
+
+`user@hackerbox:~$ touch readme.txt`
+
+The command above creates an empty file named readme.txt in your current directory.
+
+To create directories, use the mkdir (make directory) command.
+
+`user@hackerbox:~$ mkdir documents`
+
+This command creates a new directory named documents.
+
+Copying Files and Directories
+
+To copy files, the cp command is used. The general usage of the command is cp source_file target_file.
+
+`user@hackerbox:~$ cp readme.txt readme_copy.txt`
+
+This command creates a copy of readme.txt named readme_copy.txt.
+
+When copying directories, you must use the -r (recursive) option, which ensures that all subdirectories and files within the directory are also copied.
+
+`user@hackerbox:~$ cp -r documents documents_copy`
+
+This command copies the documents directory and all its contents to a new directory named documents_copy.
+
+Moving or Renaming Files and Directories
+
+To move or rename files and directories, use the mv command. This command can move files and directories to a new location or rename them.
+
+`user@hackerbox:~$ mv readme_copy.txt readme_moved.txt`
+
+This command renames the file readme_copy.txt to readme_moved.txt.
+
+`user@hackerbox:~$ mv readme_moved.txt documents/`
+
+This command moves readme_moved.txt to the documents directory.
+
+Deleting Files and Directories
+
+To delete files, use the rm (remove) command.
+
+`user@hackerbox:~$ rm readme_moved.txt`
+
+This command deletes the file readme_moved.txt.
+
+To delete directories, you can use the rm -r command. This command deletes the directory along with its contents.
+
+`user@hackerbox:~$ rm -r documents`
+
+This command deletes the documents directory and its contents.
+
+### Methods of Finding Files and Directories in Linux
+
+File and directory search operations in Linux enable users to navigate their file systems effectively. In this section, we'll cover how to find files and directories using the find, locate, and which commands. These commands offer suitable solutions for different scenarios and needs.
+
+Searching with the find Command
+The find command is used to search for files and directories based on specific criteria. With its ability to perform in-depth searches, it produces effective results in large and complex file systems.
+
+`find [search path] [search criteria] [action]`
+
+Search by Name: Use the -name option to search by file name.
+
+`find / -name "notes.txt"`
+
+Search by Type: Use the -type option to search by file type (e.g., regular files f, directories d).
+
+`find /home/user -type d -name "Project*"`
+
+Search by Size: Use the -size option to search for files by their size.
+
+`find / -size +50M`
+
+Search by Modification Time: Use -mtime, -atime, or -ctime to filter files by their time attributes.
+
+`find / -mtime -7`
+
+Searching with the locate Command
+The locate command is used to find files on the system. locate uses a database called updatedb, which contains an index of files on your system, and the locate command quickly searches this database.
+
+`locate notes.txt`
+
+The speed of the locate command's results depends on the periodic updates of the file system by updatedb. Therefore, it may not find very recently created files.
+
+Finding Executable Files with the which Command
+The which command is used to obtain information about the path of a specific command. This is especially useful for understanding which version of a program is being used when multiple versions are installed.
+
+`which python`
+
+This command shows the path of the python executable. It is commonly used to find out the location of the default python version on the system.
+
+Summary
+File and directory search operations in Linux can be easily performed using the find, locate, and which commands. The find command is ideal for in-depth, criteria-based searches. The locate command is useful for quickly obtaining results but may not provide the most current information. The which command is used to locate executables on the system. These tools allow Linux users to navigate their file systems effectively and find the files and programs they need.
+
+### Text Editing
+
+Linux provides a range of powerful tools for creating, editing, and viewing text files. In this section, we will cover one of the most popular text editors and tools accessible from the command line: nano.
+
+#### Nano Text Editor
+Nano is one of the most widely used editors on Linux-based systems. It is a simple yet effective text editor that comes pre-installed with many Linux distributions. No prior knowledge about the nano editor is required to use it. You don't need to use commands to perform operations on a file in nano; all basic operations are displayed at the bottom of the editor, which can be triggered using the CTRL key. For example, to save a file, you press **CTRL+O**, and to exit the editor, you press **CTRL+X**.
+
+`root@hackerbox:~$ nano note.txt`
+
+At the bottom of the screen, you'll see two lines with short descriptions. The **^** symbol represents the **CTRL** key on your keyboard.
+
+For example, pressing **[CTRL + W]** brings up the Search: line at the bottom of the editor, where you can enter the word or phrase you are looking for. If you now enter demo and press **[ENTER]**, the cursor will move to the first instance of the word.
+
+In this way, you can search within the text.
+
+To save the changes made in the note.txt file, use the shortcut **CTRL + O**. Then, to exit the text editor, use the shortcut **CTRL + X**.
+
+After exiting the text editor, you can verify that your text has been saved by printing the contents of the file with the cat command. The cat command is used to print the contents of files to the terminal.
+
+### Filters
+
+Filters are programs that take plain text (stored in a file or produced by another program) as standard input, transform it into a meaningful format, and then return it as standard output. Linux has a multitude of filters.
+
+_**Cat**_
+
+The primary purpose of the cat command is to display the contents of one or more text files on the terminal. This command allows quick viewing of file contents.
+
+```
+root@hackerbox:~$ cat /etc/ssh/sshd_config
+# Port 22
+# AddressFamily any
+# ListenAddress 0.0.0.0
+# ListenAddress ::
+PermitRootLogin no
+PasswordAuthentication yes
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+UsePAM yes
+
+```
+In the example above, the configuration file for the SSH service located at /etc/ssh/sshd_config is displayed on the terminal using the cat command.
+
+_**Head**_
+
+The head command is used to display the first few lines of a specified file. By default, the head command shows the first 10 lines, but this number can be changed using the -n parameter.
+
+This command is handy when you want to quickly review the beginning of a file without displaying its entire content.
+
+```
+root@hackerbox:~$ head -n 3 /var/log/apache2/access.log
+192.168.1.1 - - [15/Mar/2024:10:00:00 +0000] "GET /index.html HTTP/1.1" 200 612 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+192.168.1.2 - - [15/Mar/2024:10:00:02 +0000] "POST /login.php HTTP/1.1" 200 452 "http://example.com/login" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N)"
+192.168.1.3 - - [15/Mar/2024:10:00:03 +0000] "GET /wp-admin HTTP/1.1" 403 497 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6)"
+
+```
+
+In the example above, the first 3 lines of the log file located at /var/log/apache2/access.log for the Apache2 Web Server service are displayed on the terminal.
+
+_**Tail**_
+
+The tail command is used to display the last few lines of a specified file. By default, the tail command shows the last 10 lines, but this number can be changed using the -n parameter.
+
+This command is extremely useful for monitoring the most recently added content to continuously growing files, such as log files.
+
+```
+root@hackerbox:~$ tail -n 3 /var/log/auth.log
+Mar 15 12:00:00 servername sshd[23456]: Failed password for invalid user admin from 192.168.1.1 port 54321 ssh2
+Mar 15 12:01:00 servername sshd[23457]: Accepted password for user1 from 192.168.1.2 port 65432 ssh2
+Mar 15 12:02:00 servername sshd[23458]: Failed password for user2 from 192.168.1.3 port 76543 ssh2
+
+``` 
+
+In the example above, the last three lines of the auth.log file are displayed. The auth.log file logs events related to user authentication on a Linux system, including user logins and logouts, sudo command usage, SSH sessions, and other authentication-related events.
+
+_**Sort**_
+
+The sort command sorts the contents of a given file alphabetically.
+
+```
+root@hackerbox:~$ cat names.txt
+Bob
+Charlie
+Alice
+
+root@hackerbox:~$ sort names.txt
+Alice
+Bob
+Charlie
+
+```
+In the example above, the contents of "names.txt" are sorted alphabetically.
+
+
+_**Uniq**_
+
+The uniq command filters out consecutive duplicate lines from a file and shows the unique lines.
+
+It is often used in conjunction with the sort command because, when used alone, it only detects consecutive duplicate lines. To address duplicates throughout the file, it's recommended to first sort the data.
+
+```
+root@hackerbox:~$ cat names.txt
+Alice
+Charlie
+Alice
+Bob
+
+root@hackerbox:~$ uniq names.txt
+Alice
+Charlie
+Alice
+Bob
+
+```
+In the example above, although "Alice" appears twice, the uniq command does not remove non-consecutive duplicates.
+
+Therefore, to eliminate non-consecutive duplicates, first sort the file and then apply the uniq command.
+
+```
+root@hackerbox:~$ sort names.txt | uniq
+Alice
+Bob
+Charlie
+
+```
+
+_**Grep**_
+
+The grep command searches files for specific text strings, filters lines, and displays matching results.
+
+grep is a powerful tool commonly used to search log files, configuration files, or any text file.
+
+`root@hackerbox:~$ grep '192.168.1.1' /var/log/apache2/access.log`
+
+This command will display all records in the Apache 2 web server access logs located at /var/log/apache2/access.log that contain the IP address 192.168.1.1.
+
+
+```
+root@hackerbox:~$ grep '192.168.1.1' /var/log/apache2/access.log
+192.168.1.1 - - [15/Mar/2024:10:00:00 +0000] "GET /index.html HTTP/1.1" 200 612 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+192.168.1.1 - - [15/Mar/2024:10:00:02 +0000] "POST /login.php HTTP/1.1" 200 452 "http://example.com/login" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N)"
+192.168.1.1 - - [15/Mar/2024:10:00:03 +0000] "GET /wp-admin HTTP/1.1" 403 497 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6)"
+
+```
+
+_**WC**_
+
+The wc (word count) command quickly determines how large a file is or how much data it contains.
+
+```
+root@hackerbox:~$ wc /etc/passwd
+46   67 2544 /etc/passwd
+
+```
+
+In the example above, the wc command returns the number of lines, words, and characters respectively in the /etc/passwd file, which contains the list of registered users on a Linux system.
+
+
+![wc](img/wc.PNG)
+
+---
+The wc command has various parameters:
+
+- -l: Displays only the number of lines.
+- -w: Displays only the number of words.
+- -c: Displays only the number of bytes.
+- -m: Displays only the number of characters (useful for multi-byte character sets).
+For example, to see the total number of log entries recorded by the Apache 2 web server to date, you can use the -l parameter with the following command:
+
+```
+root@hackerbox:~$ wc -l /var/log/apache2/access.log
+54230 /var/log/apache2/access.log
+
+```
+The output indicates that there are a total of 54,230 log entries.
+
+_**Sed**_
+
+The sed (stream editor) command is a tool capable of performing various text edits such as processing, modifying, adding, deleting, or replacing texts between files.
+
+The sed command is commonly used to filter and transform texts.
+
+```
+
+root@hackerbox:~$ cat names.txt
+Alice
+Charlie
+Bob
+
+root@hackerbox:~$ sed 's/Alice/George/' names.txt
+George
+Charlie
+Bob
+
+```
+
+In the example above, the name Alice in names.txt is replaced with George using the sed command. However, note that the sed command only prints the change to the screen and does not save it to the file.
+
+_**Awk**_
+
+The awk command is designed for text and data processing tasks, and it is especially effective when working with column-based data. It reads files line by line, splits each line into fields (columns), and processes them based on specified conditions. awk offers numerous functions and control structures for complex text processing.
+
+```
+root@hackerbox:~$ cat names.txt
+John Doe
+Emily Clark
+Alex Turner
+
+root@hackerbox:~$ awk '{print $1}' names.txt
+John
+Emily
+Alex
+
+```
+In this example, the file names.txt contains three name-surname pairs: John Doe, Emily Clark, and Alex Turner. The command awk '{print $1}' names.txt processes the content of this file using the awk program. awk reads the text files line by line, splitting each line into fields separated by spaces or tabs. In this case, the expression {print $1} instructs awk to print only the first field (the first name) of each line.
+
+Using these useful Linux filters, you can process, search, and transform text files quickly and efficiently according to your specific needs.
+
+
+
+
+
+
+
