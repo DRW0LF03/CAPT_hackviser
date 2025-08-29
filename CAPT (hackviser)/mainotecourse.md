@@ -706,6 +706,354 @@ Using these useful Linux filters, you can process, search, and transform text fi
 In the daily use and system administration of Linux operating systems, managing software packages is critically important. Linux distributions provide various package managers to facilitate tasks such as software installation, updating, and removal. These package managers allow you to manage software in package formats, along with their dependencies.
 Each Linux distribution uses specific package management systems and package formats. In this section, we will explore package management tools commonly used in Debian-based Linux distributions and their basic usages.
 
+### Key Features of Package Managers
+
+Linux package managers offer various features for managing software packages:
+
+- Package Downloading: Automatically download software packages and dependencies from the internet.
+- Dependency Resolution: Identify and automatically install the dependencies required by a package.
+- Package Installation and Removal: Install software packages to the system and remove them when necessary.
+- Updates and Upgrades: Check for new versions of installed packages and update them.
+- Configuration Files and Directories: Provide standards for the configuration files and directories of software packages.
+
+### Advanced Package Manager (APT)
+APT (Advanced Package Tool) is a powerful tool used to manage software packages in Debian-based Linux distributions such as Ubuntu. This tool allows users to easily install new software, update existing software, remove unnecessary ones, and automatically resolve dependencies between software packages. With simple command-line commands, users can keep their systems up-to-date and secure, while also quickly accessing the software they need. The convenience and efficiency offered by APT make it a popular choice among Linux users.
+
+#### Updating Package Lists
+
+APT keeps package lists in a database on your local system. It doesn't connect to servers each time you search, thus providing faster results, but the results might not be up-to-date. To get the most current results, you need to update your lists.
+
+To update your package list with **apt**, use the update command.
+
+```
+user@hackerbox:~$ sudo apt update
+Hit:1 http://security.ubuntu.com/ubuntu bionic-security InRelease
+Hit:2 http://us.archive.ubuntu.com/ubuntu bionic InRelease
+Hit:3 http://us.archive.ubuntu.com/ubuntu bionic-updates InRelease
+Hit:4 http://us.archive.ubuntu.com/ubuntu bionic-backports InRelease
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+All packages are up to date.
+
+```
+
+#### Searching in Package Lists
+
+Now that we have updated the package lists in the database, we can search within those lists. For example, to search for a package with the name htop, you can perform the following search.
+
+```
+user@hackerbox:~$ sudo apt search htop
+aha - ANSI color to HTML converter
+htop - interactive processes viewer
+libauthen-oath-perl - Perl module for OATH One Time Passwords
+
+```
+
+As you can see in the results, in addition to the htop package, there are other unrelated packages. This is because the apt search command also searches within the package descriptions. For example, if we look at the description of the aha package, we can see where htop is mentioned.
+
+The apt search command supports regular expressions. For example, to search for packages starting with htop, you could do:
+
+```
+user@hackerbox:~$ sudo apt search ^htop
+htop - interactive processes viewer
+
+```
+Or, you could search for packages whose names contain the term htop.
+
+```
+user@hackerbox:~$ sudo apt search --names-only htop
+htop - interactive processes viewer
+
+```
+
+#### Installing and Updating Packages
+
+To install a package found, use the apt command.
 
 
+```
+user@hackerbox:~$ sudo apt install htop
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following NEW packages will be installed:
+  htop
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 80.0 kB of archives.
+After this operation, 201 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu bionic/universe amd64 htop amd64 2.1.0-3 [80.0 kB]
+Fetched 80.0 kB in 1s (110 kB/s)    
+Selecting previously unselected package htop.
+(Reading database ... 32507 files and directories currently installed.)
+Preparing to unpack .../htop_2.1.0-3_amd64.deb ...
+Unpacking htop (2.1.0-3) ...
+Setting up htop (2.1.0-3) ...
+Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+
+```
+
+This command also updates an existing installed package to the latest version if it's already installed.
+
+To update all packages on your system, you can use the upgrade command.
+
+```
+user@hackerbox:~$ sudo apt upgrade
+```
+
+This method will not install any new packages or remove any old ones. If this isn't a concern, you can use the dist-upgrade command.
+
+
+```
+user@hackerbox:~$ sudo apt dist-upgrade
+```
+
+#### Removing Packages
+
+To remove a package, use the remove command.
+
+```
+user@hackerbox:~$ sudo apt remove htop
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages will be REMOVED:
+  htop
+0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
+After this operation, 201 kB disk space will be freed.
+(Reading database ... 32558 files and directories currently installed.)
+Removing htop (2.1.0-3) ...
+Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+
+```
+
+The output above shows that the htop package has been successfully removed from the system, freeing up 201 kB of disk space.
+
+The remove command does not delete the configuration files and deb files for htop. To remove those as well, you would use the purge command.
+
+```
+user@hackerbox:~$ sudo apt purge htop
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages will be REMOVED:
+  htop*
+0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
+After this operation, 201 kB disk space will be freed.
+(Reading database ... 32558 files and directories currently installed.)
+Removing htop (2.1.0-3) ...
+Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+Purging configuration files for htop (2.1.0-3) ...
+
+```
+--- 
+
+### User Management
+
+User management in Linux operating systems is of vital importance for system security and efficient resource sharing. This section focuses on how to create, manage, and delete users in Linux.
+
+#### What is a User in Linux?
+
+In Linux systems, users are defined as individuals or entities performing various tasks by logging into the system. User management is crucial for controlled access, resource allocation, and overall system administration.
+
+In Linux, a user is associated with a user account that has several attributes defining their identity and privileges within the system. These attributes include the username, UID (User ID), GID (Group ID), home directory, default shell, and password.
+
+Each user account possesses unique attributes listed above.
+
+#### Types of Users
+
+Linux supports two types of users: system users and regular users.
+
+System users are created by the system during installation and are used to run system services and applications.
+
+Regular users are created by an administrator and can access the system and resources based on their permissions.
+
+#### Creating a User
+
+To create a user, use the useradd command. For example, to create a user named "John," use the following command:
+
+```
+root@hackerbox:~$ useradd -u 1002 -d /home/john -s /bin/bash john
+```
+
+This command creates a user account for John with a user ID (UID) of 1002, a home directory set as /home/john, and a default shell of /bin/bash.
+
+You can verify the newly created user account by running the id john command. This command shows the ID and group memberships for the john user.
+
+
+```
+root@hackerbox:~$ id john
+uid=1002(john) gid=1002(john) groups=1002(john)
+```
+
+#### User Attributes
+
+In Linux systems, user accounts have various attributes that define their properties and access privileges.
+
+- **Username**: A unique identifier for the user within the Linux system. For instance, John's username is john.
+- **UID (User ID)** and GID (Group ID): Each user account is associated with a UID and a GID. The UID is a numeric value assigned to the user, while the GID represents their primary group. For example, John's UID is 1002, and his primary group's GID could also be 1002.
+- **Home Directory**: A designated directory where the user's personal files and settings are stored. John's home directory is /home/john.
+- **Default Shell**: The default shell specifies the command interpreter used when the user logs in. This defines the user's interactive environment. John's default shell is set to /bin/bash, a popular shell in Linux.
+- **Password**: User accounts require passwords for access and authentication.
+- **Group**: Group membership determines which system resources the user can access and which other users can access the user's files.
+
+In Linux systems, registered users are stored in the /etc/passwd file. You can display the contents of this file to see the list of users on the system.
+
+```
+root@hackerbox:~$ cat /etc/passwd
+root:x:0:0:System Administrator:/root:/bin/bash
+john:x:1002:1002:John Doe:/home/johndoe:/bin/bash
+
+```
+
+The user list within the /etc/passwd file follows this format:
+
+| Column Value    	|  Description   |
+|-------------------|----------------|
+| john	            |  Username      |
+| x                 |  Contains the hashed password of the user. For security reasons, the password is stored in the /etc/shadow file, so this field is replaced with the character x. |
+| 1002              |  UID (User ID) of the user account, a unique numeric identifier assigned to the user by the system. |
+| 1002              |  GID (Group ID) of the user account, representing their primary group membership. |
+| ,,	            |  GECOS field, which stands for "General Electric Comprehensive Operating System." This field is used to store additional information about the user, such as the full name or contact information. In this case, the field is empty because no additional information was provided during account creation. |
+| /home/john	    |  Home directory of the user account where the user's files and personal data are stored. |
+| /bin/bash	        |  Default shell of the user account, used to interpret commands entered by the user in the terminal. In this case, the default shell is Bash, the most commonly used shell in Linux. |
+
+--- 
+
+#### Changing User Passwords
+
+User passwords can be easily changed using the passwd command. For example, to set a new password for the john user, use the following command:
+
+```
+root@hackerbox:~$ sudo passwd john
+```
+
+This command prompts you to enter a new password interactively. Note that nothing will appear on the screen as you type for security reasons. Simply type the new password and press ENTER.
+
+#### Deleting a User
+
+To remove a user named John and their associated files, use the userdel command.
+
+`root@hackerbox:~$ sudo userdel john`
+
+This command deletes the john user's account, including their home directory and all files owned by the user.
+
+
+### Group Management
+
+In Linux operating systems, group management is as important as user management. Groups are used to collectively assign the same access rights and permissions to multiple users. This enables system administrators to easily control resources and access. This section focuses on how to create, manage, and delete groups in Linux.
+
+#### What is a Group in Linux?
+
+In Linux systems, a group is a collection of users who have specific permissions and access rights. Groups are used to simplify access control in file systems and make user management more efficient.
+
+#### Creating a Group
+
+To create a new group, use the groupadd command. For example, to create a group named development, use the following command:
+
+`root@hackerbox:~$ sudo groupadd development`
+
+You can view the groups we have created in the /etc/group file.
+
+
+```
+root@hackerbox:~$ cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:
+tty:x:5:
+disk:x:6:
+...
+development:x:1004:
+
+```
+
+The /etc/group file may contain many groups, making it difficult to find the group you are looking for. To simplify your task, you can use the command below with grep to display only a specific group:
+
+
+```
+root@hackerbox:~$ cat /etc/group | grep development
+development:x:1004:
+
+```
+
+#### Adding Users to a Group
+
+To add users to the created group, use the usermod command with the -aG option. The -aG option adds the user to the specified group while preserving existing group memberships. For example, to add the user "john" to the "development" group, use the command below:
+
+`root@hackerbox:~$ sudo usermod -aG development john `
+
+#### Deleting a Group
+
+To remove a group that is no longer needed, use the groupdel command. For example, to delete the "development" group, use the following command:
+
+`root@hackerbox:~$ sudo groupdel development `
+
+This command deletes the "development" group from the system.
+
+
+
+### Permissions
+
+Just like in other operating systems, multiple user accounts can be created on Linux, and these users can share the same system.
+
+However, when different users share the same system, privacy issues can easily arise. For instance, one user may not want others to view, edit, or delete their files.
+
+We can address this issue with permissions that can be defined at the file and directory level.
+
+To view the permissions for a file or directory, we can use the -l parameter of the ls command, as discussed in previous sections.
+
+```
+root@hackerbox:~$ ls -l
+drwxr--r-- 2 john development 4096 Jul  29 12:34 notes.txt
+
+```
+
+The columns in the output obtained with the -l parameter of the ls command are as follows:
+
+---
+![Linux File Permissions](/CAPT%20(hackviser)/img/perm.jpg)
+
+
+Let's do an example to understand it better
+
+For instance, if we want to grant write permission to others for the file notes.txt, we start the command by indicating the permission set (o for others):
+
+`root@hackerbox:~$ chmod o `
+
+
+Then, we indicate whether we want to add or remove the permission. Since we want to add the permission, we use the + character.
+
+`root@hackerbox:~$ chmod o+ `
+
+Lastly, we specify the permission (w for write).
+
+
+`root@hackerbox:~$ chmod o+w `
+
+Finally, we specify the file we want to modify, notes.txt, and execute the command. We then verify the changes with ls -l.
+
+```
+root@hackerbox:~$ chmod o+w notes.txt
+root@hackerbox:~$ ls -l
+drwxr--rw- 2 john development 4096 Jul  29 12:34 notes.txt
+
+```
+
+As we can see, the permission set for others has been changed to rw-. Now, other users can read and write to the file.
+
+Another example
+
+You can also update multiple permissions and groups in a single command.
+
+For example, to grant all permissions to all sets for the file notes.txt, run the following command:
+
+```
+root@hackerbox:~$ chmod ugo+rwx notes.txt
+root@hackerbox:~$ ls -l
+drwxrwxrwx 2 john development 4096 Jul  29 12:34 notes.txt
+
+```
 
