@@ -19,7 +19,7 @@ __Availability__: Ensures that information is easily accessible to authorized us
 
 ---
 
-![CIA](/img/cia.png)
+![CIA](/CAPT%20(hackviser)/img/cia.png)
 
 ---
 
@@ -115,7 +115,7 @@ Below, you can see graphs showing employment numbers and workforce gaps in the c
 
 --- 
 
-![The data were obtained from (ISC)²](/img/cybersecurity-workforce.png)
+![The data were obtained from (ISC)²](/CAPT%20(hackviser)/img/cybersecurity-workforce.png)
 
 ---
 
@@ -217,7 +217,7 @@ Commonly used services and protocols operate on specific ports. Below is a table
 
 --- 
 
-![ports](/img/cports.PNG)
+![ports](/CAPT%20(hackviser)/img/cports.png)
 
 ---
 
@@ -269,7 +269,7 @@ The Linux operating system is composed of several layers that manage the compute
 
 ---
 
-![Linux Architecture](/img/lda3126692465.jpg)
+![Linux Architecture](/CAPT%20(hackviser)/img/da1.jpg)
 
 ---
 
